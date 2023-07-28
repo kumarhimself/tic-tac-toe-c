@@ -12,13 +12,15 @@ void game() {
 	int num_elements = 9;
 
 	while (true) {
+		printf("Hello players, welcome to the bare bones Tic Tac Toe game!");
+		printf("The first player will use the \'x\' marker and the second player will use the \'o\' marker");
+	
+		init_board(board_ptr, &num_elements);
+		
 		game_loop(board_ptr, &num_elements);
 		
 		if (restart_game()) break;
 	}
-
-	// Loop to keep application running until player wants to quit
-	game_loop(*board_ptr, num_elements);
 }
 
 void game_loop(char *board_ptr, int *num_elements) {
@@ -27,13 +29,13 @@ void game_loop(char *board_ptr, int *num_elements) {
 
 	// Loop to keep current game running until someone wins
 	while (true) {
+		int row;
+		int col;	
+	
 		char current_player = player_marker();
 			
 		printf("Player %c\'s turn:", current_player);
-		init_board(board_ptr, &num_elements);
-		printf("Player %c, please enter a column number between 1-3: ", current_player);
-		scanf();
-		printf("Player %c please enter a column: ", current_player);
+		player_input(row, col);	
 	}	
 }
 

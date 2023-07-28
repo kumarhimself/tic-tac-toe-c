@@ -37,7 +37,9 @@ void game_loop(char *board_ptr, int *num_elements) {
 	
 		printf("Player %c\'s turn:\n", current_player);
 		print_board(board_ptr, num_elements);
-		player_input(row, col);	
+		player_input(row, col);
+	
+		// TODO: Execute player move	
 	}	
 }
 

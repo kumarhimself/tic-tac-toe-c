@@ -3,26 +3,22 @@
 #include "player.h"
 
 // Function Prototype
-bool valid_input(char *board, int *row, int *col);
+bool valid_input(char *board, int *position);
 
 char player_marker() {
-	static int num_turns = 0;
+	static int num_turns = -1;
 	
 	num_turns++;
 
 	return (num_turns % 2 == 0) ? 'x' : 'o';
 }
 
-void player_input(char *board, int *row, int *col) {
+void player_input(char *board, int *position) {
 	while (true) {
-		printf("Please enter a row number between 1-3: \n");
-		scanf("%d", row);
-		printf("Please enter a column between 1-3: \n");
-		scanf("%d", col);
+		printf("Please enter a position number: \n");
+		scanf("%d", position);
 
-		printf("%d", (*row) * (*col) - 1);
-
-		if (!valid_input(board, row, col)) {
+		if (!valid_input(board, position)) {
 			printf("Invalid input, please try again!\n");
 		} else {
 			break;
@@ -30,8 +26,9 @@ void player_input(char *board, int *row, int *col) {
 	}
 }
 
-bool valid_input(char *board, int *row, int *col) {
-	if (*(board + ((*row) * (*col) - 1)) != ' ') {
+bool valid_input(char *board, int *position) {
+	char value = *(board + *position - 1); 
+	if (value == 'x' || value == 'o') {
 		return false;
 	} else {
 		return true;

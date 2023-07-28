@@ -2,7 +2,7 @@
 #define PLAYER_H
 
 char player_marker();
-void player_input(char *board, int *row, int *col);
-bool valid_input(char *board, int *row, int *col);
+void player_input(char *board, int *position);
+bool valid_input(char *board, int *position);
 
 #endif

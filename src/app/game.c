@@ -31,26 +31,24 @@ void game() {
 void game_loop(char *board_ptr, int *num_elements) {
 	// Loop to keep current game running until someone wins
 	while (true) {
-		int row;
-		int col;	
-	
+		int position;
+
 		char current_player = player_marker();
 	
 		printf("Player %c\'s turn:\n", current_player);
 		print_board(board_ptr, num_elements);
 		
-		player_input(board_ptr, &row, &col);
+		player_input(board_ptr, &position);
 
-		// TODO: Execute player move
+		perform_move(board_ptr, &current_player, &position);	
+		
 		// TODO: Check if current player won, and if so, end current game
-		printf("**ENDGAME**");
-		break;
 	}	
 }
 
 bool restart_game() {
 	char answer;
-	printf("Would you like to restart the game (y/n)?");
+	printf("Would you like to restart the game (y/n)\n?");
 	scanf("%c", &answer);
 
 	return (answer == 'y') ? true : false;

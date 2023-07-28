@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 void init_board(char *board_ptr, int *num_elements) {
 	for(int i = 0; i < *num_elements; i++) {

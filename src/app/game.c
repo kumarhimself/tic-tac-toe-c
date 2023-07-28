@@ -9,6 +9,7 @@
 // Function prototypes
 void game_loop(char *board_ptr, int *num_elements);
 bool restart_game();
+bool check_winner(char *board_ptr);
 
 void game() {
 	// Board variables
@@ -42,14 +43,37 @@ void game_loop(char *board_ptr, int *num_elements) {
 
 		perform_move(board_ptr, &current_player, &position);	
 		
-		// TODO: Check if current player won, and if so, end current game
+		if (check_winner(board_ptr)) {
+			printf("Congrats player %c, you won!\n", current_player);
+			break;
+		}
 	}	
 }
 
 bool restart_game() {
 	char answer;
-	printf("Would you like to restart the game (y/n)\n?");
+	printf("Would you like to restart the game (y/n)? ");
 	scanf("%c", &answer);
 
 	return (answer == 'y') ? true : false;
+}
+
+bool check_winner(char *board_ptr) {
+	// Check rows
+	for (int i = 0; i < 7; i += 3) {
+		char *board_value = board_ptr + i;
+		if (*board_value == *(board_value + 1) && *board_value == *(board_value + 2)) return true;
+	}
+
+	// Check columns
+	for (int i  = 0; i < 3; i++) {
+		char *board_value = board_ptr + i;
+		if (*board_value == *(board_value + 3) && *board_value == *(board_value + 6)) return true;
+	}
+	
+	// Check diagonals
+	if (*board_ptr == *(board_ptr + 4) && *board_ptr == *(board_ptr + 8)) return true;
+	if (*(board_ptr + 2) == *(board_ptr + 4) &&  *(board_ptr + 2) == *(board_ptr + 6)) return true;	
+
+	return false;
 }

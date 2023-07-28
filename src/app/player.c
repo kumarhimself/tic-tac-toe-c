@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 char player_marker() {
 	static int num_turns = 0;
 	
@@ -7,8 +9,8 @@ char player_marker() {
 }
 
 void player_input(int *row, int *col) {
-	printf("Player %c, please enter a row number between 1-3: ", current_player);
+	printf("Please enter a row number between 1-3: ");
 	scanf("%d", row);
-	printf("Player %c please enter a column between 1-3: ", current_player);
+	printf("Please enter a column between 1-3: ");
 	scanf("%d", col);
 }

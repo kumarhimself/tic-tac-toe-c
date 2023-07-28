@@ -5,6 +5,10 @@
 #include "board.h"
 #include "player.h"
 
+// Function prototypes
+void game_loop(char *board_ptr, int *num_elements);
+bool restart_game();
+
 void game() {
 	// Board variables
 	char board[3][3];
@@ -12,29 +16,27 @@ void game() {
 	int num_elements = 9;
 
 	while (true) {
-		printf("Hello players, welcome to the bare bones Tic Tac Toe game!");
-		printf("The first player will use the \'x\' marker and the second player will use the \'o\' marker");
+		printf("Hello players, welcome to the bare bones Tic Tac Toe game!\n");
+		printf("The first player will use the \'x\' marker and the second player will use the \'o\' marker\n");
 	
 		init_board(board_ptr, &num_elements);
 		
 		game_loop(board_ptr, &num_elements);
 		
-		if (restart_game()) break;
+		if (!restart_game()) break;
 	}
 }
 
 void game_loop(char *board_ptr, int *num_elements) {
-	printf("Hello players, welcome to the bare bones Tic Tac Toe game!");
-	printf("The first player will use the \'x\' marker and the second player will use the \'o\' marker");
-
 	// Loop to keep current game running until someone wins
 	while (true) {
 		int row;
 		int col;	
 	
 		char current_player = player_marker();
-			
-		printf("Player %c\'s turn:", current_player);
+	
+		printf("Player %c\'s turn:\n", current_player);
+		print_board(board_ptr, num_elements);
 		player_input(row, col);	
 	}	
 }

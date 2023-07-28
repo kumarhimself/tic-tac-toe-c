@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include "app/game.h"
 
 int main(int argc, char *argv[]) {
-	printf("Hello, World!");
-
+	game();
+	
 	return 0;
 }

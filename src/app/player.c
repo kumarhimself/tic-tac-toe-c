@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdbool.h>
+#include "player.h"
 
 // Function Prototype
 bool valid_input(char *board, int *row, int *col);
@@ -12,14 +14,19 @@ char player_marker() {
 }
 
 void player_input(char *board, int *row, int *col) {
-	printf("Please enter a row number between 1-3: \n");
-	scanf("%d", row);
-	printf("Please enter a column between 1-3: \n");
-	scanf("%d", col);
+	while (true) {
+		printf("Please enter a row number between 1-3: \n");
+		scanf("%d", row);
+		printf("Please enter a column between 1-3: \n");
+		scanf("%d", col);
 
-	if (valid_input(board, row, col)) {
-		printf("Invalid input, please try again!\n");
-		player_input(board, row, col);
+		printf("%d", (*row) * (*col) - 1);
+
+		if (!valid_input(board, row, col)) {
+			printf("Invalid input, please try again!\n");
+		} else {
+			break;
+		}
 	}
 }
 

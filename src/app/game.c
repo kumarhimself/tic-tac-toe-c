@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 
 #include "game.h"
@@ -21,8 +22,8 @@ void game() {
 	
 		init_board(board_ptr, &num_elements);
 		
-		game_loop(board_ptr, &num_elements);
-		
+		game_loop(board_ptr, &num_elements);	
+
 		if (!restart_game()) break;
 	}
 }
@@ -37,9 +38,13 @@ void game_loop(char *board_ptr, int *num_elements) {
 	
 		printf("Player %c\'s turn:\n", current_player);
 		print_board(board_ptr, num_elements);
-		player_input(row, col);
-	
-		// TODO: Execute player move	
+		
+		player_input(board_ptr, &row, &col);
+
+		// TODO: Execute player move
+		// TODO: Check if current player won, and if so, end current game
+		printf("**ENDGAME**");
+		break;
 	}	
 }
 

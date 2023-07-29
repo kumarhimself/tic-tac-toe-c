@@ -3,6 +3,5 @@
 
 char player_marker();
 void player_input(char *board, int *position);
-bool valid_input(char *board, int *position);
 
 #endif

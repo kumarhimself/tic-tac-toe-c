@@ -8,8 +8,8 @@
 
 // Function prototypes
 void game_loop(char *board_ptr, int *num_elements);
-bool restart_game();
 bool check_winner(char *board_ptr);
+bool restart_game();
 
 void game() {
 	// Board variables
@@ -24,8 +24,13 @@ void game() {
 		init_board(board_ptr, &num_elements);
 		
 		game_loop(board_ptr, &num_elements);	
-
-		if (!restart_game()) break;
+		
+		if (!restart_game()) {
+			printf("Goodbye!");
+			break;
+		} else {
+			printf("\n\n\n\n");
+		}
 	}
 }
 
@@ -50,14 +55,6 @@ void game_loop(char *board_ptr, int *num_elements) {
 	}	
 }
 
-bool restart_game() {
-	char answer;
-	printf("Would you like to restart the game (y/n)? ");
-	scanf("%c", &answer);
-
-	return (answer == 'y') ? true : false;
-}
-
 bool check_winner(char *board_ptr) {
 	// Check rows
 	for (int i = 0; i < 7; i += 3) {
@@ -76,4 +73,14 @@ bool check_winner(char *board_ptr) {
 	if (*(board_ptr + 2) == *(board_ptr + 4) &&  *(board_ptr + 2) == *(board_ptr + 6)) return true;	
 
 	return false;
+}
+
+bool restart_game() {
+	char answer;
+	
+	printf("Would you like to restart the game (y/n)? ");
+	fflush(stdin);	
+	scanf("%c", &answer);
+
+	return (answer == 'y') ? true : false;
 }
